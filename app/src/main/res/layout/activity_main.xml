@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="Blind Navigator"
+            app:titleTextColor="@android:color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/statusContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E0E0E0"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+
+        <TextView
+            android:id="@+id/tvConnectionStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Status: Disconnected"
+            android:textColor="@android:color/black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConnect"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomControls"
+        app:layout_constraintTop_toBottomOf="@id/statusContainer">
+
+        <include
+            android:id="@+id/viewNormal"
+            layout="@layout/view_normal_mode"
+            android:visibility="visible" />
+
+        <include
+            android:id="@+id/viewAi"
+            layout="@layout/view_ai_mode"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:checkedButton="@+id/btnNormalMode"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNormalMode"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Normal" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAiMode"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI Mode" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_lock_silent_mode_off"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
